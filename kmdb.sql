@@ -208,7 +208,7 @@ INSERT INTO studios (movies_id, studio_name, id)
 VALUES (3, "Warner Bros", 3);
 
 -- Prints a header for the movies output
-.print "movies"
+.print "Movies"
 .print "======"
 .print ""
 
