@@ -107,6 +107,7 @@
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS roles;
 DROP TABLE IF EXISTS studios;
+DROP TABLE IF EXISTS actors;
 
 -- Create new tables, according to your domain model
 CREATE TABLE movies (
@@ -116,15 +117,22 @@ CREATE TABLE movies (
   MPAA_ratings TEXT,
   studio TEXT
 );
-CREATE TABLE roles(
+
+CREATE TABLE actors (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
-  movies_id INTEGER,
-  Role_name TEXT,
-  Cast_name TEXT,
+  actor_name TEXT
 );
-CREATE TABLE studios(
+
+CREATE TABLE roles (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   movies_id INTEGER,
+  role_name TEXT,
+  actor_id INTEGER
+);
+
+CREATE TABLE studios (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  movies_id INTEGER
 );
 
 -- Insert data into your database that reflects the sample data shown above
@@ -136,18 +144,48 @@ VALUES ('Batman Begins', 2005,'PG-13', 'Warner Bros', 1);
 VALUES ('The Dark Knight', 2008,'PG-13', 'Warner Bros', 2);
 VALUES ('The Dark Knight Rises', 2012,'PG-13', 'Warner Bros', 3);
 
+INSERT INTO actors (actor_name,id)
+VALUES ("Christian Bale", 1);
+VALUES ("Michael Caine", 2);
+VALUES ("Liam Neeson"; 3);
+VALUES ("Katie Holmes"; 4);
+VALUES ("Gary Oldman"; 5);
+VALUES ("Heath Ledger"; 6);
+VALUES ("Aaron Eckhart", 7);
+VALUES ("Maggie Gyllenhaal", 8);
+VALUES ("Tom Hardy", 9);
+VALUES ("Joseph Gordon-Levitt", 10),
+VALUES ("Anne Hathaway", 11) 
+
+
+INSERT INTO roles (movies_id, role_name, actor_id, id)
+VALUES (1, "Bruce Wayne", 1, 1);
+VALUES (1, "Alfred", 2, 2);
+VALUES (1, "Ra's Al Ghul", 3, 3);
+VALUES (1, "Rachel Dawes", 4, 4);
+VALUES (1, "Commissioner Gordon", 5, 5);
+VALUES (2, "Bruce Wayne", 1, 6);
+VALUES (2, "Joker", 6, 7);
+VALUES (2, "Harvey Dent", 7, 8);
+VALUES (2, "Alfred", 2, 9);
+VALUES (2, "Alfred", 2, 10);
+VALUES (3, "Bruce Wayne", 1, 11);
+VALUES (3, "Commissioner Gordon", 5, 12);
+VALUES (3, "Bane", 9, 13);
+VALUES (3, "John Blake", 10, 14);
+VALUES (3, "Anne Hathaway ", 11, 15);
 
 -- Prints a header for the movies output
-.print "Movies"
+.print "movies"
 .print "======"
 .print ""
 
--- The SQL statement for the movies output
+-- The SQL statement for the movies output (SELECT)
 -- TODO!
 
 -- Prints a header for the cast output
 .print ""
-.print "Top Cast"
+.print ""
 .print "========"
 .print ""
 
