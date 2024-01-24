@@ -188,7 +188,7 @@ VALUES (2, "Harvey Dent", 7, 8);
 INSERT INTO roles (movies_id, role_name, actor_id, id)
 VALUES (2, "Alfred", 2, 9);
 INSERT INTO roles (movies_id, role_name, actor_id, id)
-VALUES (2, "Alfred", 2, 10);
+VALUES (2, "Rachel Dawes", 8, 10);
 INSERT INTO roles (movies_id, role_name, actor_id, id)
 VALUES (3, "Bruce Wayne", 1, 11);
 INSERT INTO roles (movies_id, role_name, actor_id, id)
@@ -198,7 +198,7 @@ VALUES (3, "Bane", 9, 13);
 INSERT INTO roles (movies_id, role_name, actor_id, id)
 VALUES (3, "John Blake", 10, 14);
 INSERT INTO roles (movies_id, role_name, actor_id, id)
-VALUES (3, "Anne Hathaway ", 11, 15);
+VALUES (3, "Selina Kyle ", 11, 15);
 
 INSERT INTO studios (movies_id, studio_name, id)
 VALUES (1, "Warner Bros", 1);
@@ -216,11 +216,14 @@ VALUES (3, "Warner Bros", 3);
 SELECT movies.title, movies.year_released, movies.MPAA_ratings, studios.studio_name
 FROM movies INNER JOIN studios ON movies.id = studios.movies_id;
 
+
 -- Prints a header for the cast output
-.print "cast"
+.print "Top cast"
 .print "======"
 .print ""
 
 -- The SQL statement for the cast output
-SELECT roles.movies_id, roles.role_name, roles.actor_id, actors.actor_name, movies.title
-FROM roles INNER JOIN actors ON actors.id = roles.actor_id;
+SELECT movies.title, actors.actor_name, roles.role_name
+FROM movies 
+INNER JOIN roles ON movies.id = roles.movies_id
+INNER JOIN actors ON roles.actor_id = actors.id
